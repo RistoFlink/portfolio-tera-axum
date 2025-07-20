@@ -14,7 +14,7 @@ pub fn create_router() -> Router<AppState> {
         .route("/", get(home_handler))
         .route("/about", get(about_handler))
         .route("/contact", get(contact_handler))
-        .route("/project/:slug", get(project_handler))
+        .route("/project/{slug}", get(project_handler))
         .nest_service("/static", ServeDir::new("static"))
         .fallback(handler_404)
 }
@@ -66,7 +66,7 @@ async fn project_handler(
     Path(slug): Path<String>,
 ) -> impl IntoResponse {
     if let Some(project) = state.projects.get(&slug) {
-        let template_name = format!("project_{}.html", slug);
+        let template_name = format!("projects/{}.html", slug);
         let mut context = Context::new();
         context.insert("project", &project);
         context.insert("current_page", "home");
