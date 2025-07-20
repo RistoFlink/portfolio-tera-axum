@@ -35,9 +35,29 @@ async fn home_handler(State(state): State<AppState>) -> impl IntoResponse {
     }
 }
 
-async fn about_handler() -> impl IntoResponse {}
+async fn about_handler(State(state): State<AppState>) -> impl IntoResponse {
+    let context = Context::new();
 
-async fn contact_handler() -> impl IntoResponse {}
+    match state.tera.render("about.html", &context) {
+        Ok(html) => Ok(Html(html)),
+        Err(err) => {
+            println!("Error rendering about.html: {:?}", err);
+            Err(StatusCode::INTERNAL_SERVER_ERROR)
+        }
+    }
+}
+
+async fn contact_handler(State(state): State<AppState>) -> impl IntoResponse {
+    let context = Context::new();
+
+    match state.tera.render("contact.html", &context) {
+        Ok(html) => Ok(Html(html)),
+        Err(err) => {
+            println!("Error rendering contact.html: {:?}", err);
+            Err(StatusCode::INTERNAL_SERVER_ERROR)
+        }
+    }
+}
 
 async fn project_handler() -> impl IntoResponse {}
 
