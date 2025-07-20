@@ -8,3 +8,4 @@ tera = "1"
 serde = { version = "1.0.219", features = ["derive"] }
 axum = "0.8.4"
 tower-http = {version = "0.6.6", features = ["fs"]}
+tokio = { version = "1.46.1", features = ["full"] }
