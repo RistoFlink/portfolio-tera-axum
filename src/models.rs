@@ -4,7 +4,7 @@ use tera::Tera;
 
 #[derive(Clone)]
 pub struct AppState {
-    pub tera: Tera,
+    pub tera: Arc<Tera>,
     pub projects: Arc<HashMap<String, Project>>,
 }
 
