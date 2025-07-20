@@ -1,4 +1,5 @@
 use std::collections::HashMap;
+use std::net::SocketAddr;
 use std::sync::Arc;
 
 mod models;
@@ -21,10 +22,17 @@ async fn main() {
 
     let app = create_router();
 
+    let port: u16 = std::env::var("PORT")
+        .unwrap_or_else(|_| "3000".to_string())
+        .parse()
+        .expect("Failed to parse PORT");
+
+    let address = SocketAddr::from(([0, 0, 0, 0], port));
+
     let app_with_state = app.with_state(app_state);
 
-    let listener = tokio::net::TcpListener::bind("0.0.0.0:7878").await.unwrap();
-    println!("Server listening on port 7878");
+    let listener = tokio::net::TcpListener::bind(address).await.expect("Failed to bind to address");
+    println!("Server listening on port {port}");
     axum::serve(listener, app_with_state).await.unwrap();
 }
 
