@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="main main--project">
+  <div>
+    <img class="hero"
+         src="{{ url_for('static', filename=project['hero']) }}"
+         alt="A hand holding a pen, about to write something in a project planner."
+    >
+    <article class="project">
+      <article class="project__content">
+        <h2 class="project__heading">{{ project["name"] }}</h2>
+        <p>This habit tracker was built on HTML, CSS and Python.
+          Flask, which is a micro web framework, was used to implement all the necessary functionalities to make a webpage.
+          These include redirecting users to the correct views and some basic database interactions.
+          The database utilized in this project was MongoDB.
+        </p>
+        <p>Users can add new habits that are then saved to a database, and displayed under each day in the calendar.
+          The user can then click the habits and a checkmark icon is then displayed to show this habit was done on that specific day.
+          Any visitor can add new habits, so an improvement over the current design would be to implement a user registration and login feature.
+          Habits that are marked as done, cannot be unchecked either.
+        </p>
+      </article>
+
+      <section>
+        <article class="project__meta-group">
+          <h3 class="project__heading project__heading--meta">Technologies used:</h3>
+          <ul class="technology-list">
+            <li class="technology-list__item">Python</li>
+            <li class="technology-list__item">HTML</li>
+            <li class="technology-list__item">CSS</li>
+            <li class="technology-list__item">MongoDB</li>
+          </ul>
+        </article>
+        <a class="cta" href="{{ project['prod']}}">
+          <img class="cta__icon"
+               src=" {{ url_for('static', filename='img/pointer.svg') }}">
+          View in production
+        </a>
+      </section>
+    </article>
+  </div>
+</main>
+{% endblock %}
+    

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="main main--project">
+  <div>
+    <img class="hero"
+         src="{{ url_for('static', filename=project['hero']) }}"
+         alt="A hand holding a pen, about to write something in a project planner."
+    >
+    <article class="project">
+      <article class="project__content">
+        <h2 class="project__heading">{{ project["name"] }}</h2>
+        <p>This is a simple microblog built with HTML, CSS and Python.
+          The user is able to write simple text-based blog posts and add them to a database.
+          These posts are also displayed to visitors in a descending order starting from the newest.
+          The web functionality of this project was done with Flask,
+          which is a micro web framework written in Python.
+        </p>
+        <p>
+          All the blog posts are stored in a MongoDB database
+          and the production version is running on Heroku.
+          Anyone who has access to the link is able to post new entires,
+          so in the future, I would like to implement a feature
+          that limits this to only registered users. But as it is right now, it also functions as a guestbook so please feel free to leave a comment!
+        </p>
+      </article>
+
+      <section>
+        <article class="project__meta-group">
+          <h3 class="project__heading project__heading--meta">Technologies used:</h3>
+          <ul class="technology-list">
+            <li class="technology-list__item">Python</li>
+            <li class="technology-list__item">HTML</li>
+            <li class="technology-list__item">CSS</li>
+            <li class="technology-list__item">MongoDB</li>
+          </ul>
+        </article>
+        <a class="cta" href="{{ project['prod']}}">
+          <img class="cta__icon"
+               src=" {{ url_for('static', filename='img/pointer.svg') }}">
+          View in production
+        </a>
+      </section>
+    </article>
+  </div>
+</main>
+{% endblock %}
+    

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="main main--project">
+  <div>
+    <img class="hero"
+         src="{{ url_for('static', filename=project['hero']) }}"
+         alt="A hand holding a pen, about to write something in a project planner."
+    >
+    <article class="project">
+      <article class="project__content">
+        <h2 class="project__heading">{{ project["name"] }}</h2>
+        <p>Note: full thesis only available in Finnish!</p>
+        <p>The thesis was commissioned by Dinox Sport Oy, a company from Hollola that manufactures and sells sporting equipment. The case company had considered expanding into Estonia as the first step of opening their online store to customers outside of Finland, so a part of the thesis was about making a destination market analysis. The case company had in the past commissioned another thesis which focused more on the general side of internationalizing. This thesis and the more specific focus on one country can be considered a continuation of that work. The empirical portion of the thesis was based on the knowledge and skills gained during an internship at the case company.
+      </article>
+
+      <section>
+        <a class="cta" href="{{ project['prod']}}">
+          <img class="cta__icon"
+               src=" {{ url_for('static', filename='img/pointer.svg') }}">
+          View the full thesis in Theseus
+        </a>
+      </section>
+    </article>
+  </div>
+</main>
+{% endblock %}
+    
