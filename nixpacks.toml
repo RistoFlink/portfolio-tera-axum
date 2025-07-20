@@ -1,0 +1,8 @@
+[phases.build]
+cmds = ["cargo build --release"]
+
+[phases.install]
+cmds = ["mkdir -p /app/templates", "mkdir -p /app/static", "cp -r templates/* /app/templates/", "cp -r static/* /app/static/"]
+
+[start]
+cmd = "./target/release/portfolio-tera-axum"
