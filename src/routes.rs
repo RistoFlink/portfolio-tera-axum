@@ -6,10 +6,10 @@ use axum::{
     response::{Html, IntoResponse},
     routing::get,
 };
-use tera::{Context, Tera};
+use tera::{Context};
 use tower_http::services::ServeDir;
 
-pub fn create_router() -> Router {
+pub fn create_router() -> Router<AppState> {
     Router::new()
         .route("/", get(home_handler))
         .route("/about", get(about_handler))
