@@ -1,5 +1,5 @@
 [phases.build]
-cmds = ["cargo build --release", "mkdir -p /app/bin", "cp /app/target/release/portfolio-tera-axum /app/bin/portfolio-tera-axum"]
+cmds = ["cargo build --release"]
 
 [start]
-cmd = "/app/bin/portfolio-tera-axum"
+cmd = "./target/release/portfolio-tera-axum"
