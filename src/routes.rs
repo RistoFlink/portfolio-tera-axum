@@ -20,7 +20,20 @@ pub fn create_router(app_state: AppState) -> Router {
         .fallback(handler_404)
 }
 
-async fn home_handler() -> impl IntoResponse {}
+async fn home_handler(State(state): State<AppState>) -> impl IntoResponse {
+    let projects_vec: Vec<Project> = state.projects.values().cloned().collect();
+
+    let mut context = Context::new();
+    context.insert("projects_vec", &projects_vec);
+
+    match state.tera.render("home.html", &context) {
+        Ok(html) => Ok(Html(html)),
+        Err(err) => {
+            println!("Error rendering home.html: {:?}", err);
+            Err(StatusCode::INTERNAL_SERVER_ERROR)
+        }
+    }
+}
 
 async fn about_handler() -> impl IntoResponse {}
 
