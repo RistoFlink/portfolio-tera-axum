@@ -61,4 +61,14 @@ async fn contact_handler(State(state): State<AppState>) -> impl IntoResponse {
 
 async fn project_handler() -> impl IntoResponse {}
 
-async fn handler_404() -> impl IntoResponse {}
+async fn handler_404(State(state): State<AppState>) -> impl IntoResponse {
+    let context = Context::new();
+
+    match state.tera.render("404.html", &context) {
+        Ok(html) => Ok(Html(html)),
+        Err(err) => {
+            println!("Error rendering 404.html: {:?}", err);
+            Err(StatusCode::INTERNAL_SERVER_ERROR)
+        }
+    }
+}
